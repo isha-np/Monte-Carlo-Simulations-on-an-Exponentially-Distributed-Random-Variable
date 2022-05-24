@@ -1,0 +1,16 @@
+clear;
+clf;
+xmin=0;
+xmax=100;
+delta_x=xmax-xmin;
+MCmax=10000; nMC=100; MC=linspace(10,MCmax,nMC);
+lambda=0.2;
+mu=1/lambda;
+over_area=zeros(nMC,1);
+for m=1:nMC
+x=linspace(xmin,xmax,MC(m));
+y=x.*pdf('Exponential',x,mu);
+mean(m)=sum(y).*delta_x/MC(m);
+end
+plot(MC,mean); xlabel("Number of Monte Carlo simulations");
+ylabel("Mean");
